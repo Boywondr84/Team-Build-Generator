@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-// const { writeFile, copyFile } = require("./lib/generate-build.js");
+const { writeFile } = require("./lib/generate-build.js");
 const generateBuild = require("./lib/generate-build");
 
 // question prompts
@@ -13,13 +13,13 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "office",
-            message: "What is the Team Manager's office number? (Required)",
-            validate: officeInput => {
-                if (officeInput === '100') {
+            name: "ID",
+            message: "Enter your ID number. (Required)",
+            validate: idInput => {
+                if (idInput === '25') {
                     return true;
                 } else {
-                    console.log('Incorrect Office Number!');
+                    console.log('Invalid ID');
                     return false;
                 }
             }
@@ -39,13 +39,13 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "ID",
-            message: "Enter your ID number. (Required)",
-            validate: idInput => {
-                if (idInput === '25') {
+            name: "office",
+            message: "What is the Team Manager's office number? (Required)",
+            validate: officeInput => {
+                if (officeInput === '100') {
                     return true;
                 } else {
-                    console.log('Invalid ID');
+                    console.log('Incorrect Office Number!');
                     return false;
                 }
             }
@@ -57,7 +57,7 @@ const promptUser = () => {
             choices: ['Engineer', 'Intern', 'none'],
             validate: teamAdd => {
                 if (teamAdd === 'none') {
-                    generateHtml();
+                    generateHTML();
                 } else if (teamAdd === 'Engineer') {
                     //promptEngineer();
                 } else {
@@ -69,6 +69,7 @@ const promptUser = () => {
 };
 
 promptUser()
-    .then(generateHTML => {
-        return fs.writeFile(generateHTML);
-    });
+// return generateBuild();
+//     .then(generateHTML => {
+//         return writeFile(generateHTML);
+//     });
