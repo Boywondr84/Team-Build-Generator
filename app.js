@@ -1,4 +1,6 @@
 const inquirer = require("inquirer");
+const fs = require("fs");
+// const { writeFile, copyFile } = require("./lib/generate-build.js");
 const generateBuild = require("./lib/generate-build");
 
 // question prompts
@@ -47,8 +49,26 @@ const promptUser = () => {
                     return false;
                 }
             }
+        },
+        {
+            type: "checkbox",
+            name: "team",
+            message: "Add members to your team?",
+            choices: ['Engineer', 'Intern', 'none'],
+            validate: teamAdd => {
+                if (teamAdd === 'none') {
+                    generateHtml();
+                } else if (teamAdd === 'Engineer') {
+                    //promptEngineer();
+                } else {
+                    //promptIntern();
+                }
+            }
         }
     ]);
 };
 
-promptUser();
+promptUser()
+    .then(generateHTML => {
+        return fs.writeFile(generateHTML);
+    });
