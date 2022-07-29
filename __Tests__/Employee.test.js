@@ -1,13 +1,12 @@
-const Manager = require('../lib/Employee');
+const Employee = require('../lib/Employee');
 jest.mock('../lib/Employee');
 
-console.log(new Manager());
+console.log(new Employee());
 
-test('creates a manager object', () => {
-    const manager = new Manager('Ryan');
+test('creates an employee object', () => {
+    const employee = new Employee('Ryan');
 
-    expect(manager.name).toBe('Ryan');
-    expect(manager.id).toEqual(expect.any(Number));
-    expect(manager.email).toBe(`${manager.name}@email.com`);
-    expect(manager.office).toEqual(expect.any(Number));
+    expect(employee.name).toBe('Ryan');
+    expect(employee.id).toEqual(expect.any(Number));
+    expect(employee.email).toBe(`${employee.name}@email.com`);
 });
