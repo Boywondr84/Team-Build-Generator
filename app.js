@@ -17,7 +17,7 @@ const promptUser = () => {
             name: "ID",
             message: "Enter your ID number. (Required)",
             validate: idInput => {
-                if (idInput === '25') {
+                if (idInput == "") {
                     return true;
                 } else {
                     console.log('Invalid ID');
@@ -43,7 +43,7 @@ const promptUser = () => {
             name: "office",
             message: "What is the Team Manager's office number? (Required)",
             validate: officeInput => {
-                if (officeInput === '100') {
+                if (officeInput == "") {
                     return true;
                 } else {
                     console.log('Incorrect Office Number!');
@@ -60,9 +60,10 @@ const promptUser = () => {
         //         if (teamAdd == 'none') {
         //             return;
         //         } else if (teamAdd === 'Engineer') {
-        //             promptEngineer();
-        //         } else {
-        //             //promptIntern();
+        //             console.log("Adding an engineer to team.")
+        //             // } else {
+        //             //     //promptIntern();
+        //             // }
         //         }
         //     }
         // }
@@ -72,12 +73,9 @@ const promptUser = () => {
         })
         .catch((error) => {
             console.log(error);
-        })        
+        })
 };
 
-// const promptEngineer = teamData => {
-//     console.log("Adding an engineer to team.")
-// };
 
 // // if (!teamData.members) {
 // //     teamData.members = [];
@@ -140,12 +138,12 @@ promptUser()
         return writeToFile("index.html", generateBuild(managerData));
     });
 
-function writeToFile(fileName, data) {
-    fs.writeFileSync(path.join(process.cwd(), fileName), data, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("Success");
-        }
-    })
-};
+// function writeToFile(fileName, data) {
+//     fs.writeFileSync(path.join(process.cwd(), fileName), data, function (err) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log("Success");
+//         }
+//     })
+// };
