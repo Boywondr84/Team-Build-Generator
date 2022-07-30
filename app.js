@@ -1,8 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const { writeFile } = require("./lib/generateBuild.js");
-const generateBuild = require("./lib/generateBuild");
-
+const generateBuild = require("./lib/generateBuild.js");
+const path = require("path");
+var teamArray = [];
+var Manager = require("./lib/Manager");
+var Engineer = require("./lib/Engineer");
 // question prompts
 const promptUser = () => {
 
@@ -14,10 +16,10 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "ID",
+            name: "id",
             message: "Enter your ID number. (Required)",
             validate: idInput => {
-                if (idInput == "") {
+                if (idInput == "25") {
                     return true;
                 } else {
                     console.log('Invalid ID');
@@ -43,7 +45,7 @@ const promptUser = () => {
             name: "office",
             message: "What is the Team Manager's office number? (Required)",
             validate: officeInput => {
-                if (officeInput == "") {
+                if (officeInput == "100") {
                     return true;
                 } else {
                     console.log('Incorrect Office Number!');
@@ -67,64 +69,83 @@ const promptUser = () => {
         //         }
         //     }
         // }
+
     ])
         .then((managerData) => {
-            console.log(managerData.name);
+            console.log(managerData);
+            var manager = new Manager(managerData.name, managerData.email, managerData.id, managerData.office);
+            teamArray.push(manager);
+            addEmployee();
         })
         .catch((error) => {
             console.log(error);
         })
 };
 
-
-// // if (!teamData.members) {
-// //     teamData.members = [];
-// // }
-
-// return inquirer.prompt([
-//     {
-//         type: "input",
-//         name: "Engineer's Name",
-//         message: "Enter Engineer's name.",
-//     },
-//     {
-//         type: "input",
-//         name: "ID",
-//         message: "Enter your ID number. (Required)",
-//         validate: idInput => {
-//             if (idInput === '10') {
-//                 return true;
-//             } else {
-//                 console.log('Invalid ID');
-//                 return false;
-//             }
-//         }
-//     },
-//     {
-//         type: "input",
-//         name: "email",
-//         message: "What is your e-mail address? (Required)",
-//         validate: emailInput => {
-//             if (emailInput) {
-//                 return true;
-//             } else {
-//                 console.log('Invalid e-mail');
-//                 return false;
-//             }
-//         }
-//     },
-//     {
-//         type: "input",
-//         name: "GitHub Name",
-//         message: "What is your GitHub Account Name? (Required)",
-//         validate: githubInput => {
-//             if (githubInput) {
-//                 return true;
-//             } else {
-//                 console.log('Please enter a GitHub username');
-//                 return false;
-//             }
-//         }
+function addEmployee() {
+    inquirer.prompt({
+        type: "list",
+        name: "Employee",
+        message: "What type of employee to add?",
+        choices: ['Engineer', 'Intern', 'Manager', 'none']
+    })
+        .then((response) => {
+            console.log(response);
+            if (response.Employee == 'none') {
+                return writeToFile('index.html', generateBuild(teamArray));
+            } else {
+                function addEngineer() {
+                    inquirer.prompt([
+                        {
+                            type: "input",
+                            name: "name",
+                            message: "What is the engineer's name?"
+                        },
+                        {
+                            type: "input",
+                            name: "id",
+                            message: "Enter your ID number. (Required)",
+                            validate: idInput => {
+                                if (idInput == "2") {
+                                    return true;
+                                } else {
+                                    console.log('Invalid ID');
+                                    return false;
+                                }
+                            }
+                        },
+                        {
+                            type: "input",
+                            name: "email",
+                            message: "What is your e-mail address? (Required)",
+                            validate: emailInput => {
+                                if (emailInput) {
+                                    return true;
+                                } else {
+                                    console.log('Invalid e-mail');
+                                    return false;
+                                }
+                            }
+                        },
+                        {
+                            type: "input",
+                            name: "GitHub Name",
+                            message: "What is your GitHub Account Name? (Required)",
+                            validate: githubInput => {
+                                if (githubInput) {
+                                    return true;
+                                } else {
+                                    console.log('Please enter a GitHub username');
+                                    return false;
+                                }
+                            }
+                        },
+                        addEngineer()
+                    ])
+                };
+            };
+        })
+}; 
 //     }
 // ])
 //     .then(teamData => {
@@ -133,17 +154,18 @@ const promptUser = () => {
 //         return promptEngineer(teamData);
 //     })
 
-promptUser()
-    .then(managerData => {
-        return writeToFile("index.html", generateBuild(managerData));
-    });
+promptUser();
 
-// function writeToFile(fileName, data) {
-//     fs.writeFileSync(path.join(process.cwd(), fileName), data, function (err) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             console.log("Success");
-//         }
-//     })
-// };
+//     .then(managerData => {
+//         return generateBuild(managerData);
+//     });
+
+function writeToFile(fileName, data) {
+    fs.writeFileSync(path.join(process.cwd(), fileName), data, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Success");
+        }
+    })
+};
