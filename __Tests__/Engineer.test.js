@@ -7,7 +7,7 @@ test('creates engineer office number', () => {
     const engineer = new Engineer('Frank');
 
     expect(engineer.name).toBe('Frank');
-    // expect(engineer.github).toBe(`https://github.com/${engineer.name}`);
+    expect(engineer.github).toBe(`https://github.com/${engineer.github}`);
     // expect(engineer.getRole()).toBe('Engineer');
 });
 

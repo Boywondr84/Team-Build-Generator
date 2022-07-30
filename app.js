@@ -6,6 +6,7 @@ var teamArray = [];
 var Manager = require("./lib/Manager");
 var Engineer = require("./lib/Engineer");
 var Intern = require("./lib/Intern");
+
 // question prompts
 const promptUser = () => {
 
@@ -54,23 +55,6 @@ const promptUser = () => {
                 }
             }
         },
-        // {
-        //     type: "checkbox",
-        //     name: "team",
-        //     message: "Add members to your team?",
-        //     choices: ['Engineer', 'Intern', 'none'],
-        //     validate: teamAdd => {
-        //         if (teamAdd == 'none') {
-        //             return;
-        //         } else if (teamAdd === 'Engineer') {
-        //             console.log("Adding an engineer to team.")
-        //             // } else {
-        //             //     //promptIntern();
-        //             // }
-        //         }
-        //     }
-        // }
-
     ])
         .then((managerData) => {
             // console.log(managerData);
