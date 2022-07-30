@@ -72,9 +72,10 @@ const promptUser = () => {
 
     ])
         .then((managerData) => {
-            console.log(managerData);
+            // console.log(managerData);
             var manager = new Manager(managerData.name, managerData.email, managerData.id, managerData.office);
             teamArray.push(manager);
+            // console.log(teamArray);
             addEmployee();
         })
         .catch((error) => {
@@ -95,7 +96,7 @@ function addEmployee() {
                 return writeToFile('index.html', generateBuild(teamArray));
             } else {
                 function addEngineer() {
-                    inquirer.prompt([
+                    return inquirer.prompt([
                         {
                             type: "input",
                             name: "name",
@@ -129,7 +130,7 @@ function addEmployee() {
                         },
                         {
                             type: "input",
-                            name: "GitHub Name",
+                            name: "github",
                             message: "What is your GitHub Account Name? (Required)",
                             validate: githubInput => {
                                 if (githubInput) {
@@ -137,15 +138,24 @@ function addEmployee() {
                                 } else {
                                     console.log('Please enter a GitHub username');
                                     return false;
-                                }
+                                } 
                             }
                         },
-                        addEngineer()
                     ])
                 };
+                addEngineer()
+                    .then((engineerData) => {
+                        var engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
+                        teamArray.push(engineer);
+                        console.log(teamArray);
+                        addEmployee();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
             };
         })
-}; 
+};
 //     }
 // ])
 //     .then(teamData => {
