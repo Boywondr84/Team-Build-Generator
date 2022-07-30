@@ -5,6 +5,7 @@ const path = require("path");
 var teamArray = [];
 var Manager = require("./lib/Manager");
 var Engineer = require("./lib/Engineer");
+var Intern = require("./lib/Intern");
 // question prompts
 const promptUser = () => {
 
@@ -158,11 +159,52 @@ function addEmployee() {
                     return inquirer.prompt([
                         {
                             type: "input",
-                            name: "name"
+                            name: "name",
+                            message: "What is your name?"
                         },
+                        {
+                            type: "input",
+                            name: "id",
+                            message: "Enter your ID number. (Required)",
+                            validate: idInput => {
+                                if (idInput == "3") {
+                                    return true;
+                                } else {
+                                    console.log('Invalid ID');
+                                    return false;
+                                }
+                            }
+                        },
+                        {
+                            type: "input",
+                            name: "email",
+                            message: "What is your e-mail address? (Required)",
+                            validate: emailInput => {
+                                if (emailInput) {
+                                    return true;
+                                } else {
+                                    console.log('Invalid e-mail');
+                                    return false;
+                                }
+                            }
+                        },
+                        {
+                            type: "input",
+                            name: "school",
+                            message: "Where do you attend school?"
+                        }
                     ])
                 };
                 addIntern()
+                    .then((internData) => {
+                        var intern = new Intern(internData.name, internData.id, internData.email, internData.school);
+                        teamArray.push(intern);
+                        console.log(internData);
+                        addEmployee();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
             }
         })
 };
