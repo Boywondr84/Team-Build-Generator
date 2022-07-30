@@ -28,3 +28,9 @@ test('get employee role', () => {
 
     expect(employee.getRole()).toBe('Employee');
 });
+
+// test('get office number', () => {
+//     const employee = new Employee ('Ryan');
+
+//     expect(employee.getOfficeNumber()).toEqual(expect.any(Number));
+// });
