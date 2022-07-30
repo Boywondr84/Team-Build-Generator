@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateBuild = require("./lib/generateBuild.js");
+const pageTemplate = require("./src/page-template.js");
 const path = require("path");
 var teamArray = [];
 var Manager = require("./lib/Manager");
@@ -21,7 +21,7 @@ const promptUser = () => {
             name: "id",
             message: "Enter your ID number. (Required)",
             validate: idInput => {
-                if (idInput == "25") {
+                if (idInput == "1") {
                     return true;
                 } else {
                     console.log('Invalid ID');
@@ -57,10 +57,8 @@ const promptUser = () => {
         },
     ])
         .then((managerData) => {
-            // console.log(managerData);
             var manager = new Manager(managerData.name, managerData.email, managerData.id, managerData.office);
             teamArray.push(manager);
-            // console.log(teamArray);
             addEmployee();
         })
         .catch((error) => {
@@ -76,9 +74,8 @@ function addEmployee() {
         choices: ['Engineer', 'Intern', 'Manager', 'none']
     })
         .then((response) => {
-            console.log(response);
-            if (response.Employee == 'none') {
-                return writeToFile('index.html', generateBuild(teamArray));
+            if (response.Employee === 'none') {
+                return writeToFile('./index.html', pageTemplate(teamArray));
             } else if (response.Employee == 'Engineer') {
                 function addEngineer() {
                     return inquirer.prompt([
@@ -132,7 +129,6 @@ function addEmployee() {
                     .then((engineerData) => {
                         var engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
                         teamArray.push(engineer);
-                        console.log(engineerData.github);
                         addEmployee();
                     })
                     .catch((error) => {
@@ -183,7 +179,6 @@ function addEmployee() {
                     .then((internData) => {
                         var intern = new Intern(internData.name, internData.id, internData.email, internData.school);
                         teamArray.push(intern);
-                        console.log(internData);
                         addEmployee();
                     })
                     .catch((error) => {
@@ -192,26 +187,35 @@ function addEmployee() {
             }
         })
 };
-//     }
-// ])
-//     .then(teamData => {
-//         teamData.members.push(teamData);
-//         console.log(teamData);
-//         return promptEngineer(teamData);
-//     })
+promptUser()
+    // .then(employeeData => {
+        // console.log("THis is employee data");
+        // const htmlString = pageTemplate(employeeData);
+        // return writeToFile("./dist/index.html", htmlString);
+        // console.log(employeeData);
+    // })
 
-promptUser();
-
-//     .then(managerData => {
-//         return generateBuild(managerData);
-//     });
+    // .then(writeFileResponse => {
+    //     console.log(writeFileResponse);
+    //     return fs.copyFile();
+    // })
+    // .then(copyFileRespone => {
+    //     console.log(copyFileRespone);
+    // // })
+    // .catch(err => {
+    //     console.log(err);
+    // });
 
 function writeToFile(fileName, data) {
     fs.writeFileSync(path.join(process.cwd(), fileName), data, function (err) {
+        console.log('Hello')
         if (err) {
-            console.log(err);
-        } else {
-            console.log("Success");
+            console.log("This is an error");
+            return;
         }
-    })
+            console.log("Success");
+        
+    });
 };
+
+// path.join(process.cwd() line 219, first parameter

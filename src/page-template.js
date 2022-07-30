@@ -1,8 +1,30 @@
+const fs = require("fs");
+
+const generateBuild = (data) => {
+    console.log(data);
+    var body = "";
+    for (var i = 0; i < data.length; i++) {
+        var card = `
+        <div class="card">
+        <h1>${data[i].getRole()}</h1>
+        </div>
+        <div>
+        <h3>${data[i].getEmail()}</h3>
+        </div>
+        <div>
+        <h3>${data[i].getId()}</h3>
+        </div>
+        `;
+        body += card;
+    };
+
+return body;
+}
+
 module.exports = templateData => {
     // console.log(templateData);
     // const { name } = templateData;
     // console.log(name);
-
 
     return `
 <!DOCTYPE html>
@@ -12,13 +34,15 @@ module.exports = templateData => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie-edge">
         <title>Portfolio Demo</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./src/style.css" />
     </head>
-
+    
     <body>
-        <p></p>
+        <header>
+            <div>
+            ${generateBuild(templateData)}
+            </div>
+        </header>
     </body>
     </html>
     `;
