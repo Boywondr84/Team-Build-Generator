@@ -94,7 +94,7 @@ function addEmployee() {
             console.log(response);
             if (response.Employee == 'none') {
                 return writeToFile('index.html', generateBuild(teamArray));
-            } else {
+            } else if (response.Employee == 'Engineer') {
                 function addEngineer() {
                     return inquirer.prompt([
                         {
@@ -147,13 +147,23 @@ function addEmployee() {
                     .then((engineerData) => {
                         var engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
                         teamArray.push(engineer);
-                        console.log(teamArray);
+                        console.log(engineerData.github);
                         addEmployee();
                     })
                     .catch((error) => {
                         console.log(error);
                     })
-            };
+            } else {
+                function addIntern() {
+                    return inquirer.prompt([
+                        {
+                            type: "input",
+                            name: "name"
+                        },
+                    ])
+                };
+                addIntern()
+            }
         })
 };
 //     }
