@@ -58,6 +58,7 @@ const promptUser = () => {
     ])
         .then((managerData) => {
             var manager = new Manager(managerData.name, managerData.email, managerData.id, managerData.office);
+            console.log(managerData.office);
             teamArray.push(manager);
             addEmployee();
         })

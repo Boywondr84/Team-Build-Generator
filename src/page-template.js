@@ -15,8 +15,8 @@ const generateBuild = (data) => {
                     <h3>${data[i].getEmail()}</h3>
                 </div>
                 <div>
-                    <h3>${data[i].getId()}</h3>
-            </div>
+                    <h3>${data[i].getGithub()}</h3>
+                </div>
         `;
         body += card;
     };

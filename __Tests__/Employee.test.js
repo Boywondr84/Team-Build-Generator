@@ -29,8 +29,8 @@ test('get employee role', () => {
     expect(employee.getRole()).toBe('Employee');
 });
 
-// test('get office number', () => {
-//     const employee = new Employee ('Ryan');
+test('get github account name', () => {
+    const employee = new Employee('Ryan');
 
-//     expect(employee.getOfficeNumber()).toEqual(expect.any(Number));
-// });
+    expect(employee.getGithub()).toBe(`https://github.com/${employee.name}` + "2022");
+});
