@@ -3,14 +3,21 @@
 }
 .card {
     border: 1px solid black;
-    width: 35%;
+    width: 30%;
 }
 
 .card-header {
     background-color: blue;
     color: white; 
+    text-align: center;
+    padding: 10px 0 10px 0;
 }
 
 .card-content {
-    border: 1px solid black;
+    margin-left: 20px;
+}
+
+h3 a {
+    text-decoration: none;
+    color: black;
 }

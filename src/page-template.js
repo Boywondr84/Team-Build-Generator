@@ -12,10 +12,17 @@ const generateBuild = (data) => {
             </div>
             <div class="card-content">
                 <div>
-                    <h3>${data[i].getEmail()}</h3>
+                    <h3>
+                        <a href="${data[i].getEmail()}">E-mail: ${data[i].getEmail()}</a>
+                        </h3>
                 </div>
                 <div>
-                    <h3>${data[i].getGithub()}</h3>
+                    <h3>
+                        <a href="${data[i].getGithub()}">Github: ${data[i].getGithub()}</a>
+                    </h3>
+                </div>
+                <div>
+                    <h3>${data[i].getId()}</h3>
                 </div>
         `;
         body += card;
