@@ -179,6 +179,7 @@ function addEmployee() {
                 addIntern()
                     .then((internData) => {
                         var intern = new Intern(internData.name, internData.id, internData.email, internData.school);
+                        console.log(intern);
                         teamArray.push(intern);
                         addEmployee();
                     })

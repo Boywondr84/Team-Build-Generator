@@ -20,7 +20,7 @@ test('get employee name', () => {
 test('get employee email', () => {
     const employee = new Employee('Ryan');
 
-    expect(employee.getEmail()).toBe(`E-mail: ${employee.email}`);
+    expect(employee.getEmail()).toBe(`${employee.email}`);
 });
 
 test('get employee role', () => {
@@ -33,4 +33,10 @@ test('get github account name', () => {
     const employee = new Employee('Ryan');
 
     expect(employee.getGithub()).toBe(`https://github.com/${employee.name}` + "2022");
+});
+
+test('get school name', () => {
+    const employee = new Employee('Ryan');
+
+    expect(employee.getSchool()).toBe('NYU');
 });
