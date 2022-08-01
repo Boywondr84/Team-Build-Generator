@@ -29,11 +29,11 @@ test('get employee role', () => {
     expect(employee.getRole()).toBe('Employee');
 });
 
-test('get github account name', () => {
-    const employee = new Employee('Ryan');
+// test('get github account name', () => {
+//     const employee = new Employee('Ryan');
 
-    expect(employee.getGithub()).toBe(`https://github.com/${employee.name}` + "2022");
-});
+//     expect(employee.getGithub()).toBe(`https://github.com/${employee.github}`);
+// });
 
 test('get school name', () => {
     const employee = new Employee('Ryan');
@@ -41,8 +41,8 @@ test('get school name', () => {
     expect(employee.getSchool()).toBe('NYU');
 });
 
-test('get office number', () => {
-    const employee = new Employee('Ryan');
+// test('get office number', () => {
+//     const employee = new Employee('Ryan');
 
-    expect(employee.getOffice()).toEqual(expect.any(Number));
-});
+//     expect(employee.getOffice()).toBe(`${employee.office}`);
+// });

@@ -20,6 +20,9 @@ const generateBuild = (data) => {
                     <a href="${data[i].getEmail()}">E-mail: ${data[i].getEmail()}</a>
                     </h3>
                 </div>
+                <div>
+                    <h3>${data[i].getOffice()}</h3>
+                </div>
             </div>
         </div>        
                 

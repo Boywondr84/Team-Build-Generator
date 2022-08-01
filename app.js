@@ -47,7 +47,7 @@ const promptUser = () => {
             name: "office",
             message: "What is the Team Manager's office number? (Required)",
             validate: officeInput => {
-                if (officeInput == "100") {
+                if (officeInput === "100") {
                     return true;
                 } else {
                     console.log('Incorrect Office Number!');
@@ -58,7 +58,6 @@ const promptUser = () => {
     ])
         .then((managerData) => {
             var manager = new Manager(managerData.name, managerData.email, managerData.id, managerData.office);
-            console.log(managerData.office);
             teamArray.push(manager);
             addEmployee();
         })
@@ -90,7 +89,7 @@ function addEmployee() {
                             name: "id",
                             message: "Enter your ID number. (Required)",
                             validate: idInput => {
-                                if (idInput == "2") {
+                                if (idInput === "2") {
                                     return true;
                                 } else {
                                     console.log('Invalid ID');
@@ -148,7 +147,7 @@ function addEmployee() {
                             name: "id",
                             message: "Enter your ID number. (Required)",
                             validate: idInput => {
-                                if (idInput == "3") {
+                                if (idInput === "3") {
                                     return true;
                                 } else {
                                     console.log('Invalid ID');
@@ -179,7 +178,6 @@ function addEmployee() {
                 addIntern()
                     .then((internData) => {
                         var intern = new Intern(internData.name, internData.id, internData.email, internData.school);
-                        console.log(intern);
                         teamArray.push(intern);
                         addEmployee();
                     })
