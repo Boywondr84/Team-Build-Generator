@@ -8,7 +8,7 @@ test('creates an employee object', () => {
 
     expect(employee.name).toBe('Ryan');
     expect(employee.id).toEqual(expect.any(Number));
-    expect(employee.email).toBe(`${employee.name}`.toLowerCase() + "@email.com");
+    expect(employee.email).toBe(`${employee.email}`.toLowerCase());
 });
 
 test('get employee name', () => {
@@ -39,4 +39,10 @@ test('get school name', () => {
     const employee = new Employee('Ryan');
 
     expect(employee.getSchool()).toBe('NYU');
+});
+
+test('get office number', () => {
+    const employee = new Employee('Ryan');
+
+    expect(employee.getOffice()).toEqual(expect.any(Number));
 });
