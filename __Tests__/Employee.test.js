@@ -32,15 +32,3 @@ test('get employee id', () => {
 
     expect(employee.getId()).toBe("ID: " + employee.id);
 });
-
-// test('get school name', () => {
-//     const employee = new Employee('Ryan');
-
-//     expect(employee.getSchool()).toBe('NYU');
-// });
-
-// test('get office number', () => {
-//     const employee = new Employee('Ryan');
-
-//     expect(employee.getOffice()).toBe(`${employee.office}`);
-// });
