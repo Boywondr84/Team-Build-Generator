@@ -7,7 +7,7 @@ test('creates an employee object', () => {
     const employee = new Employee('Ryan');
 
     expect(employee.name).toBe('Ryan');
-    expect(employee.id).toEqual(expect.any(Number));
+    expect(employee.id).toEqual('1');
     expect(employee.email).toBe(`${employee.email}`.toLowerCase());
 });
 

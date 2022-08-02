@@ -18,19 +18,6 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "id",
-            message: "Enter your ID number. (Required)",
-            validate: idInput => {
-                if (idInput == "1") {
-                    return true;
-                } else {
-                    console.log('Invalid ID');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
             name: "email",
             message: "What is your e-mail address? (Required)",
             validate: emailInput => {
@@ -41,6 +28,11 @@ const promptUser = () => {
                     return false;
                 }
             }
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Enter your ID number."
         },
         {
             type: "input",
@@ -57,6 +49,7 @@ const promptUser = () => {
         },
     ])
         .then((managerData) => {
+            console.log(managerData);
             var manager = new Manager(managerData.name, managerData.email, managerData.id, managerData.office);
             teamArray.push(manager);
             addEmployee();
@@ -86,19 +79,6 @@ function addEmployee() {
                         },
                         {
                             type: "input",
-                            name: "id",
-                            message: "Enter your ID number. (Required)",
-                            validate: idInput => {
-                                if (idInput === "2") {
-                                    return true;
-                                } else {
-                                    console.log('Invalid ID');
-                                    return false;
-                                }
-                            }
-                        },
-                        {
-                            type: "input",
                             name: "email",
                             message: "What is your e-mail address? (Required)",
                             validate: emailInput => {
@@ -109,6 +89,11 @@ function addEmployee() {
                                     return false;
                                 }
                             }
+                        },
+                        {
+                            type: "input",
+                            name: "id",
+                            message: "Enter your ID number."
                         },
                         {
                             type: "input",
@@ -127,7 +112,8 @@ function addEmployee() {
                 };
                 addEngineer()
                     .then((engineerData) => {
-                        var engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
+                        console.log(engineerData);
+                        var engineer = new Engineer(engineerData.name, engineerData.email, engineerData.id, engineerData.github);
                         teamArray.push(engineer);
                         addEmployee();
                     })
@@ -140,20 +126,7 @@ function addEmployee() {
                         {
                             type: "input",
                             name: "name",
-                            message: "What is your name?"
-                        },
-                        {
-                            type: "input",
-                            name: "id",
-                            message: "Enter your ID number. (Required)",
-                            validate: idInput => {
-                                if (idInput === "3") {
-                                    return true;
-                                } else {
-                                    console.log('Invalid ID');
-                                    return false;
-                                }
-                            }
+                            message: "What is the Team Manager's name?"
                         },
                         {
                             type: "input",
@@ -170,6 +143,11 @@ function addEmployee() {
                         },
                         {
                             type: "input",
+                            name: "id",
+                            message: "Enter your ID number."
+                        },
+                        {
+                            type: "input",
                             name: "school",
                             message: "Where do you attend school?"
                         }
@@ -177,7 +155,8 @@ function addEmployee() {
                 };
                 addIntern()
                     .then((internData) => {
-                        var intern = new Intern(internData.name, internData.id, internData.email, internData.school);
+                        console.log(internData);
+                        var intern = new Intern(internData.name, internData.email, internData.id, internData.school);
                         teamArray.push(intern);
                         addEmployee();
                     })
@@ -188,23 +167,7 @@ function addEmployee() {
         })
 };
 promptUser()
-    // .then(employeeData => {
-        // console.log("THis is employee data");
-        // const htmlString = pageTemplate(employeeData);
-        // return writeToFile("./dist/index.html", htmlString);
-        // console.log(employeeData);
-    // })
 
-    // .then(writeFileResponse => {
-    //     console.log(writeFileResponse);
-    //     return fs.copyFile();
-    // })
-    // .then(copyFileRespone => {
-    //     console.log(copyFileRespone);
-    // // })
-    // .catch(err => {
-    //     console.log(err);
-    // });
 
 function writeToFile(fileName, data) {
     fs.writeFileSync(path.join(process.cwd(), fileName), data, function (err) {
@@ -217,5 +180,3 @@ function writeToFile(fileName, data) {
         
     });
 };
-
-// path.join(process.cwd() line 219, first parameter
