@@ -1,10 +1,16 @@
-const Engineer = require('../lib/Engineer');
-jest.mock('../lib/Engineer');
+const Engineer = require('../lib/Engineer.js');
+jest.mock('../lib/Engineer.js');
 
 console.log(new Engineer());
 
-test('get github account name', () => {
-    const engineer = new Engineer('Bob');
+test('create an engineer object', () => {
+    const engineer = new Engineer('Bill');
 
-    expect(engineer.getGithub()).toBe(`https://github.com/${engineer.github}`);
+    expect(engineer.name).toBe('Bill');
+});
+
+test('get github account name', () => {
+    const engineer = new Engineer('Bill');
+
+    expect(engineer.getGithub()).toBe(engineer.github);
 });
