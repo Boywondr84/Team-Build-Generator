@@ -1,43 +1,81 @@
 const fs = require("fs");
 
-const generateBuild = (data) => {
+const generateBuild = data => {
     console.log(data);
     var body = "";
-    for (var i = 0; i < data.length; i++) {
+    data.forEach(member => {
+
+    // for (var i = 0; i < data.length; i++)
+    if (member.getRole() === "Manager") {
+        var card = `
+        <div class="row mb-4">
+            <div class="card">
+                <div class="col">
+                    <h1>${member.getName()}<br>
+                        ${member.getRole()}</h1>
+                </div>
+            <div class="card-content">
+                <div>
+                    <h3>${member.getId()}</h3>
+                </div>
+                <div>
+                    <p>Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
+                    <p>${member.getOfficeNumber()}</p>
+                </div>
+            </div>
+        </div>        
+    `;
+
+        body += card;
+
+    } else if (member.getRole() === "Engineer") {
+        var card = `
+        <div class="row mb-4">
+            <div class="card">
+                <div class="col">
+                    <h1>${member.getName()}<br>
+                        ${member.getRole()}</h1>
+                </div>
+            <div class="card-content">
+                <div>
+                    <h3>${member.getId()}</h3>
+                </div>
+                <div>
+                    <p>Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
+                    <p>Github: <a target="_blank" href="${member.getGithub()}">${member.getGithub()}</a></p>
+                </div>
+            </div>
+        </div> 
+    `;
+
+        body += card;
+
+    } else {
         var card = `
         <div class="row mb-4">
             <div class="card">
                 <div class="col">
                     <h1>${data[i].getName()}<br>
-                    ${data[i].getRole()}</h1>
+                        ${data[i].getRole()}</h1>
                 </div>
             <div class="card-content">
                 <div>
                     <h3>${data[i].getId()}</h3>
                 </div>
                 <div>
-                    <h3>
-                    <a href="${data[i].getEmail()}">E-mail: ${data[i].getEmail()}</a>
-                    </h3>
+                    <h3>${data[i].getSchool()}</h3>
                 </div>
-                <div>
-                    <h3>${data[i].getGithub()}</h3>
-                    </div>
-                    <div>
-                        <h3>${data[i].getOffice()}</h3>
-                        </div>
-                
             </div>
-        </div>        
-                
-        `;
+        </div> 
+    `;
 
         body += card;
-
-    };
+    }
+});
 
     return body;
-}
+
+};
 
 module.exports = templateData => {
     // console.log(templateData);

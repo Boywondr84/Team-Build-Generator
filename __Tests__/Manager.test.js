@@ -12,5 +12,5 @@ test('creates a manager object', () => {
 test('creates office number', () => {
     const manager = new Manager('Patti');
 
-    expect(manager.getOffice()).toBe(manager.office);
+    expect(manager.getOfficeNumber()).toBe(manager.office);
 });

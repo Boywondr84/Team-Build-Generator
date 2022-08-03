@@ -37,15 +37,7 @@ const promptUser = () => {
         {
             type: "input",
             name: "office",
-            message: "What is the Team Manager's office number? (Required)",
-            validate: officeInput => {
-                if (officeInput === "100") {
-                    return true;
-                } else {
-                    console.log('Incorrect Office Number!');
-                    return false;
-                }
-            }
+            message: "Enter your office number."
         },
     ])
         .then((managerData) => {
@@ -64,7 +56,7 @@ function addEmployee() {
         type: "list",
         name: "Employee",
         message: "What type of employee to add?",
-        choices: ['Engineer', 'Intern', 'Manager', 'none']
+        choices: ['Engineer', 'Intern', 'none']
     })
         .then((response) => {
             if (response.Employee === 'none') {

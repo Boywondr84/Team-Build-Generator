@@ -12,5 +12,5 @@ test('create an engineer object', () => {
 test('get github account name', () => {
     const engineer = new Engineer('Bill');
 
-    expect(engineer.getGithub()).toEqual(engineer.github);
+    expect(engineer.getGithub()).toBe(engineer.github);
 });
