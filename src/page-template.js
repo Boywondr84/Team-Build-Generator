@@ -5,34 +5,37 @@ const generateBuild = data => {
     var body = "";
     data.forEach(member => {
 
-    // for (var i = 0; i < data.length; i++)
     if (member.getRole() === "Manager") {
         var card = `
-        <div class="row mb-4">
-            <div class="card">
-                <div class="col">
-                    <h1>${member.getName()}<br>
-                        ${member.getRole()}</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card" style="width: 24rem;">
+                    <div class="card-body">
+                        <h1>${member.getName()}<br>
+                            ${member.getRole()}</h1>
+                    </div>
+                <div class="card-content">
+                    <div>
+                        <h3>${member.getId()}</h3>
+                    </div>
+                    <div>
+                        <p>Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
+                        <p>${member.getOfficeNumber()}</p>
+                    </div>
                 </div>
-            <div class="card-content">
-                <div>
-                    <h3>${member.getId()}</h3>
-                </div>
-                <div>
-                    <p>Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
-                    <p>${member.getOfficeNumber()}</p>
-                </div>
+                </div> 
             </div>
-        </div>        
+        </div>       
     `;
 
         body += card;
 
     } else if (member.getRole() === "Engineer") {
         var card = `
-        <div class="row mb-4">
-            <div class="card">
-                <div class="col">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" style="width: 24rem;">
+                <div class="card-body">
                     <h1>${member.getName()}<br>
                         ${member.getRole()}</h1>
                 </div>
@@ -45,28 +48,34 @@ const generateBuild = data => {
                     <p>Github: <a target="_blank" href="${member.getGithub()}">${member.getGithub()}</a></p>
                 </div>
             </div>
-        </div> 
+            </div> 
+        </div>
+    </div>
     `;
 
         body += card;
 
     } else {
         var card = `
-        <div class="row mb-4">
-            <div class="card">
-                <div class="col">
-                    <h1>${data[i].getName()}<br>
-                        ${data[i].getRole()}</h1>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" style="width: 24rem;">
+                <div class="card-body">
+                    <h1>${member.getName()}<br>
+                        ${member.getRole()}</h1>
                 </div>
             <div class="card-content">
                 <div>
-                    <h3>${data[i].getId()}</h3>
+                    <h3>${member.getId()}</h3>
                 </div>
                 <div>
-                    <h3>${data[i].getSchool()}</h3>
+                    <p>Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
+                    <p>${member.getSchool()}</p>
                 </div>
             </div>
-        </div> 
+            </div> 
+        </div>
+    </div>
     `;
 
         body += card;
@@ -78,9 +87,6 @@ const generateBuild = data => {
 };
 
 module.exports = templateData => {
-    // console.log(templateData);
-    // const { name } = templateData;
-    // console.log(name);
 
     return `
 <!DOCTYPE html>
