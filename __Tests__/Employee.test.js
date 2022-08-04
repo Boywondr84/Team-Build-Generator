@@ -12,13 +12,13 @@ test('creates an employee object', () => {
 test('get employee name', () => {
     const employee = new Employee('Ryan');
 
-    expect(employee.getName()).toEqual(expect.stringContaining(employee.name));
+    expect(employee.getName()).toEqual(expect.stringContaining("Ryan"));
 });
 
 test('get employee email', () => {
     const employee = new Employee('Ryan');
 
-    expect(employee.getEmail()).toBe(employee.email + "@email.com");
+    expect(employee.getEmail()).toBe("ryandrums" + "@email.com");
 });
 
 test('get employee role', () => {
@@ -30,5 +30,5 @@ test('get employee role', () => {
 test('get employee id', () => {
     const employee = new Employee('Ryan');
 
-    expect(employee.getId()).toBe("ID: " + employee.id);
+    expect(employee.getId()).toBe("ID: " + "1");
 });
