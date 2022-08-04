@@ -21,7 +21,7 @@ The generator will create cards for each employee based on the information the u
 - Jest (for TDD)
 
 # Screenshot:
-<img src="></img>
+<img src=".\screenshot.png"></img>
 
 Contributions:
 Ryan Kahlbaugh
