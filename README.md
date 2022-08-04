@@ -23,5 +23,8 @@ The generator will create cards for each employee based on the information the u
 # Screenshot:
 <img src=".\screenshot.png"></img>
 
+* Link to video:
+https://drive.google.com/file/d/1FjEe-nXEGLyv7WdYvn_NYS_UxjoZFYo1/view
+
 Contributions:
 Ryan Kahlbaugh
